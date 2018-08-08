@@ -21,10 +21,6 @@ class  CommentApp extends Component {
         }
     }
 
-    // componentWillMount(){
-    //     this._loadComments()
-    // }
-
     handleSubmitComment(comment){
         if (!comment) return
         if (!comment.username) return alert('请输入用户名')
@@ -32,7 +28,6 @@ class  CommentApp extends Component {
         const comments = this.state.comments
         comments.unshift(comment)
         this.setState({comments})
-        // this._saveComments(comments)
         this.props.saveData(comments)
     }
 
@@ -40,24 +35,10 @@ class  CommentApp extends Component {
         const comments = this.state.comments
         comments.splice(index, 1)
         this.setState({ comments })
-        // this._saveComments(comments)
         this.props.saveData(comments)
     }
 
-    // _loadComments(){
-    //     let comments = localStorage.getItem('comments')
-    //     if(comments){
-    //         comments = JSON.parse(comments)
-    //         this.setState({comments})
-    //     }
-    // }
-
-    // _saveComments(comments){
-    //     localStorage.setItem('comments',JSON.stringify(comments))
-    // }
-
     render(){
-        // console.log(this.state.comments)
         return (
             <div className='wrapper'>
                 <CommentInput onSubmit={this.handleSubmitComment.bind(this)}/>

@@ -9,14 +9,14 @@ import wrapWithLoadData from './wrapWithLoadData'
 class CommentInput extends Component {
     static propTypes = {
         onSubmit: PropTypes.func,
-        data: PropTypes.any,
-        saveData: PropTypes.func.isRequired
+        username: PropTypes.any,
+        onUserNameInputBlur: PropTypes.func
     }
 
     constructor(props){
         super(props)
         this.state = {
-            username: props.data || '',
+            username: props.username || '',
             content: ''
         }
     }
@@ -25,29 +25,11 @@ class CommentInput extends Component {
         this.textarea.focus()
     }
 
-    // componentWillUpdate(){
-    //     this.textarea.focus()
-    // }
-
-    // componentWillMount(){
-    //     this._loadUsername()
-    // }
-
     handleUsernameBlur(event){
-        // this._saveUsername(event.target.value)
-        this.props.saveData(event.target.value)
+        if(this.props.onUserNameInputBlur){
+            this.props.onUserNameInputBlur(event.target.value)
+        }
     }
-
-    // _saveUsername (username) {
-    //     localStorage.setItem('username', username)
-    // }
-
-    // _loadUsername () {
-    //     const username = localStorage.getItem('username')
-    //     if (username) {
-    //       this.setState({ username })
-    //     }
-    // }
 
     usernameChange(event){
         this.setState({

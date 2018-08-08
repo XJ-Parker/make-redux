@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import {Index,Provider} from './react-redux';
-import {Index} from './react-redux';
+// import {Index} from './react-redux';
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux'
+import CommentApp from './containers/commentApp'
+import commentsReducer from './reducers/comments'
 // function createStore(reducer){
 //     let state = null
 //     const listeners = []
@@ -19,25 +21,25 @@ import { createStore } from 'redux'
 //     return {getState, subscribe, dispatch}
 // }
 
-const themeReducer = (state,action)=>{
-    if(!state){
-        return {
-            themeColor: 'red'
-        }
-    }
-    switch (action.type){
-        case 'CHANGE_COLOR':
-            return {...state, themeColor: action.themeColor}
-        default:
-            return state
-    }
-}
+// const themeReducer = (state,action)=>{
+//     if(!state){
+//         return {
+//             themeColor: 'red'
+//         }
+//     }
+//     switch (action.type){
+//         case 'CHANGE_COLOR':
+//             return {...state, themeColor: action.themeColor}
+//         default:
+//             return state
+//     }
+// }
 
-const store = createStore(themeReducer)
+const store = createStore(commentsReducer)
 
 ReactDOM.render(  
     <Provider store={store}>
-        <Index />
+        <CommentApp />
     </Provider>, 
     document.getElementById('root'));
 registerServiceWorker();
